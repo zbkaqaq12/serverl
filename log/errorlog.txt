@@ -1,0 +1,6 @@
+2024/12/16 13:16:52 [error] the Socket initialize fail!
+2024/12/16 14:17:56 [error] the Socket initialize fail!
+2024/12/16 14:18:52 [error] the Socket initialize fail!
+2024/12/16 16:26:09 [error] the Socket initialize fail!
+2024/12/16 20:48:06 [error] the Socket initialize fail!
+2024/12/16 21:28:13 [error] the Socket initialize fail!
