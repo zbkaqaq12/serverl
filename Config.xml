@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- API服务器基础配置 -->
+	<Server>
+		<Port>8080</Port>
+		<WorkerProcesses>4</WorkerProcesses>
+		<Timeout>30</Timeout>
+		<MaxConnections>10000</MaxConnections>
+	</Server>
+
+	<!-- API路由配置 -->
+	<API>
+		<Version>1.0</Version>
+		<BasePath>/api/v1</BasePath>
+		<RateLimit>100</RateLimit>
+		<RateLimitWindow>60</RateLimitWindow>
+		<AllowedMethods>GET,POST,PUT,DELETE</AllowedMethods>1
+	</API>
+	<!-- 安全配置 -->
+	<Security>
+		<JWT>
+			<Secret>your-secret-key</Secret>
+			<Expires>3600</Expires>
+		</JWT>
+		<RateLimit>
+			<MaxRequests>100</MaxRequests>
+			<Window>60</Window>
+		</RateLimit>
+	</Security>
+	
+	<!-- CORS 配置 -->
+	<CORS>
+		<AllowedOrigins>*</AllowedOrigins>
+		<AllowedMethods>GET,POST,PUT,DELETE</AllowedMethods>
+		<AllowedHeaders>Content-Type,Authorization</AllowedHeaders>
+	</CORS>
+	
+	<!-- 日志相关配置 -->
+	<Log>
+		<!-- 日志文件输出目录和文件名 -->
+		<LogFile>./log/errorlog.txt</LogFile>
+		<!-- 日志等级 (0-8), 0为最高等级，8为最低等级 -->
+		<LogLevel>6</LogLevel>
+		<MaxFileSize>100M</MaxFileSize>
+		<MaxFiles>10</MaxFiles>
+	</Log>
+
+	<!-- 进程相关配置 -->
+	<Proc>
+		<!-- 创建worker进程的数量 -->
+		<WorkerProcesses>1</WorkerProcesses>
+		<!-- 是否按守护进程方式运行 (1:是, 0:否) -->
+		<Daemon>0</Daemon>
+		<!-- 处理接收到的消息的线程池中线程数量 -->
+		<ProcMsgRecvWorkThreadCount>120</ProcMsgRecvWorkThreadCount>
+	</Proc>
+
+	<!-- 网络相关配置 -->
+	<Net>
+		<!-- 监听的端口数量 -->
+		<ListenPortCount>1</ListenPortCount>
+		<!-- 监听端口 -->
+		<ListenPort0>8081</ListenPort0>
+		<!-- 监听端口1 -->
+		<!-- <ListenPort1>443</ListenPort1> -->
+		<!-- 每个worker进程允许连接的最大客户端数 -->
+		<worker_connections>2048</worker_connections>
+		<!-- Socket连接回收等待时间（秒） -->
+		<Sock_RecyConnectionWaitTime>150</Sock_RecyConnectionWaitTime>
+		<!-- 是否开启踢人时钟 (1:开启, 0:关闭) -->
+		<Sock_WaitTimeEnable>1</Sock_WaitTimeEnable>
+		<!-- 心跳超时检测时间（秒） -->
+		<Sock_MaxWaitTime>20</Sock_MaxWaitTime>
+		<!-- 超时后踢掉客户端 (仅当Sock_WaitTimeEnable=1时有效) -->
+		<Sock_TimeOutKick>0</Sock_TimeOutKick>
+	</Net>
+
+	<!-- 网络安全相关配置 -->
+	<NetSecurity>
+		<!-- Flood攻击检测是否开启 (1:开启, 0:关闭) -->
+		<Sock_FloodAttackKickEnable>1</Sock_FloodAttackKickEnable>
+		<!-- 每次收到数据包的时间间隔（单位：毫秒） -->
+		<Sock_FloodTimeInterval>100</Sock_FloodTimeInterval>
+		<!-- 连续发包次数，超过此次数认为是Flood攻击 -->
+		<Sock_FloodKickCounter>10</Sock_FloodKickCounter>
+		<EnableSSL>true</EnableSSL>
+		<CertFile>./cert/server.crt</CertFile>
+		<KeyFile>./cert/server.key</KeyFile>
+		<EnableCORS>true</EnableCORS>
+		<AllowedOrigins>*</AllowedOrigins>
+	</NetSecurity>
+	
+	
+	<!-- 数据库配置 -->
+	<Database>
+		<Type>mysql</Type>
+		<Host>localhost</Host>
+		<Port>3306</Port>
+		<Name>api_db</Name>
+		<User>api_user</User>
+		<Password>secret</Password>
+		<MaxConnections>100</MaxConnections>
+		<Timeout>5</Timeout>
+	</Database>
+
+	<!-- 缓存配置 -->
+	<Cache>
+		<Type>redis</Type>
+		<Host>localhost</Host>
+		<Port>6379</Port>
+		<Password></Password>
+		<Timeout>2</Timeout>
+	</Cache>
+</config>

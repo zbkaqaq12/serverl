@@ -1,0 +1,9 @@
+1|struct connection_s {
+2|    // ... 其他成员 ...
+3|    
+4|    // 发送相关
+5|    std::atomic<int> iSendCount{0};      // 发送队列中的数据条目数
+6|    std::atomic<int> iThrowsendCount{0}; // 发送缓冲区满，需要通过epoll事件来驱动发送数据的次数
+7|    
+8|    // ... 其他成员 ...
+9|}; 
